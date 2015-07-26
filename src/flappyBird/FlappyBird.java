@@ -1,9 +1,14 @@
 package flappyBird;
 
 import java.awt.Graphics;
-import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FlappyBird {
+import javax.swing.JFrame;
+import javax.swing.Timer;
+
+public class FlappyBird implements ActionListener
+{
  
 public static FlappyBird flappyBird;
 
@@ -14,6 +19,7 @@ public Render render;
   public FlappyBird()
   {
 	JFrame jframe = new JFrame();
+	Timer timer = new Timer(20, this);
 	
 	render = new Render();
 	
@@ -23,7 +29,14 @@ public Render render;
 	jframe.setResizable(false);
 	jframe.setVisible(true);
    }
-		
+	
+@Override
+public void actionPerformed(ActionEvent e) 
+ {
+  
+  	
+  }
+
   public void repaint(Graphics g)
   {
 		
