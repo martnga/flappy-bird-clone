@@ -19,7 +19,7 @@ public class FlappyBird implements ActionListener, MouseListener
  
 public static FlappyBird flappyBird;
 
-public final int WIDTH = 1400, HEIGHT = 800;
+public final int WIDTH = 1000, HEIGHT = 800;
 
 public Render render;
 
@@ -132,9 +132,15 @@ public void actionPerformed(ActionEvent e)
    }
 	bird.y += yMotion;
 	
-	//Conditions for ending the game
+	
 	for (Rectangle column : columns)
-	{
+	{   
+		//Calculating the score
+		if (column.y == 0 && bird.x + bird.width / 2 > column.x +column.width / 2 - 5 && bird.x + bird.width / 2 < column.x +column.width / 2 + 5)
+		{
+			score++;
+		}
+			//Conditions for ending the game
 		if (column.intersects(bird))
 		{
 			gameOver = true;
@@ -150,7 +156,7 @@ public void actionPerformed(ActionEvent e)
 	}
 	
 	//positioning the bird after it falls over
-	if (gameOver)
+	if (bird.y + yMotion >= HEIGHT - 120)
 	{
 		bird.y = HEIGHT - 120 -bird.height;
 	}
@@ -197,6 +203,11 @@ public void actionPerformed(ActionEvent e)
 	if (gameOver)
 	{
 	  g.drawString("Game Over!", 75, HEIGHT/2 -50);
+	}
+	//showing scores on the window
+	if (!gameOver && !started)
+	{
+		g.drawString(String.valueOf(score), WIDTH/ 2 - 25, 100);
 	}
   }
   
