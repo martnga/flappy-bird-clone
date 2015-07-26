@@ -56,6 +56,10 @@ public void actionPerformed(ActionEvent e)
 	g.setColor(Color.ORANGE);
 	g.fillRect(0, HEIGHT-150, WIDTH, 150);
 	
+	  //grass 
+	g.setColor(Color.green);
+	g.fillRect(0, HEIGHT-150, WIDTH, 20);
+	
 	  //bird paint components
 	g.setColor(Color.red);
 	g.fillRect(bird.x, bird.y, bird.width, bird.height);
