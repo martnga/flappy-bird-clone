@@ -29,7 +29,7 @@ public ArrayList<Rectangle> columns;
 
 public Random rand;
 
-public boolean gameOver, started = true;
+public boolean gameOver, started;
 
 // class constructor
   public FlappyBird()
@@ -135,6 +135,9 @@ public void actionPerformed(ActionEvent e)
 		if (column.intersects(bird))
 		{
 			gameOver = true;
+			
+			//column sweeps the bird away
+			bird.x = column.x - bird.width;
 		}
 	}
 	
@@ -178,10 +181,16 @@ public void actionPerformed(ActionEvent e)
 		paintColumn(g, column);
 	}
 	
-	//when its game over
 	g.setColor(Color.white);
 	g.setFont(new Font("Arial", 1, 100));
 	
+	//to start the game
+	if (!gameOver)
+	{
+	  g.drawString("Click to Start!", 75, HEIGHT/2 -50);
+	}
+	
+	//when its game over
 	if (gameOver)
 	{
 	  g.drawString("Game Over!", 75, HEIGHT/2 -50);
