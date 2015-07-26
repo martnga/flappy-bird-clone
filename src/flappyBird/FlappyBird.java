@@ -1,5 +1,6 @@
 package flappyBird;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -47,7 +48,8 @@ public void actionPerformed(ActionEvent e)
 
   public void repaint(Graphics g)
   {
-			
+	g.setColor(Color.cyan);
+	g.fillRect(0, 0, WIDTH, HEIGHT);
   }
   
   public static void main(String[] args)
