@@ -29,6 +29,7 @@ public Rectangle bird;
 	render = new Render();
 	
 	jframe.add(render);
+	jframe.setTitle("FlappyBird");
 	jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	jframe.setSize(WIDTH, HEIGHT);
 	jframe.setResizable(false);
@@ -45,6 +46,13 @@ public void actionPerformed(ActionEvent e)
  {
   render.repaint(); 	
   }
+
+  //creating the columns
+public void paintColumn(Graphics g, Rectangle column)
+{
+	g.setColor(Color.green.darker());
+	g.fillRect(column.x, column.y, column.width, column.height);
+}
 
   public void repaint(Graphics g)
   {
