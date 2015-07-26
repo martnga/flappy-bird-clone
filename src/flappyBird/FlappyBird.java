@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -45,6 +46,7 @@ public Random rand;
 	jframe.setVisible(true); 
 	
 	bird = new Rectangle(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20, 20);
+	
 	columns = new ArrayList<Rectangle>();
 	
 	addColumn(true);
@@ -87,14 +89,35 @@ public void paintColumn(Graphics g, Rectangle column)
 @Override
 public void actionPerformed(ActionEvent e) 
  {
-	//creating the bird's motion
+	//moving the columns towards the left;
+	int speed = 10;
+	   
+   for(int i = 0; i< columns.size(); i++)
+   {
+	  Rectangle column = columns.get(i);
+	  column.x -= speed;
+    }
+     // handle for columns with zero height
+   for(int i = 0; i< columns.size(); i++)
+   {
+	  Rectangle column = columns.get(i);
+	  
+	  // remove the pair with zero height
+	  if (column.x + column.width < 0)
+	  {
+		  columns.remove(column);
+	  }
+    }
+   
+   //creating the bird's motion
+   ticks++;
    if(ticks % 2 == 0 && yMotion < 15)
    {
 	 yMotion += 2;
    }
-	bird.y = yMotion;
+	bird.y += yMotion;
 	
-   render.repaint(); 
+    render.repaint(); 
   }
 
  public void repaint(Graphics g)
@@ -114,6 +137,11 @@ public void actionPerformed(ActionEvent e)
 	  //bird paint components
 	g.setColor(Color.red);
 	g.fillRect(bird.x, bird.y, bird.width, bird.height);
+	
+	for(Rectangle column : columns)
+	{
+		paintColumn(g, column);
+	}
   }
   
    //instantiating bird objects
