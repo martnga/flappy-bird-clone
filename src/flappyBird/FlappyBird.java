@@ -22,6 +22,8 @@ public Render render;
 
 public Rectangle bird;
 
+public int ticks, yMotion;
+
 public ArrayList<Rectangle> columns;
 
 public Random rand;
@@ -45,10 +47,16 @@ public Random rand;
 	bird = new Rectangle(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20, 20);
 	columns = new ArrayList<Rectangle>();
 	
+	addColumn(true);
+	addColumn(true);
+	addColumn(true);
+	addColumn(true);
+	addColumn(true);
+	
 	timer.start();
    } 
 	
-  //adding the columns
+  //adding the columns of random height to screen
 public void addColumn(boolean start)
 {
  int space = 300;
@@ -57,18 +65,16 @@ public void addColumn(boolean start)
  
   if (start)
   {  
- columns.add(new Rectangle(WIDTH  + width + columns.size() * 300, HEIGHT - height - 120, width, height));
- columns.add(new Rectangle(WIDTH + width + (columns.size() + 1) * 300, 0, width, HEIGHT - height - space ));
+ columns.add(new Rectangle(WIDTH  + width + columns.size() * 300, HEIGHT - height - 150, width, height));
+ columns.add(new Rectangle(WIDTH + width + (columns.size() - 1) * 300, 0, width, HEIGHT - height - space ));
   }
   else
   {
-	  columns.add(new Rectangle(columns.get(columns.size() + 1).x + 600, HEIGHT - height - 120, width, height));
-	  columns.add(new Rectangle(WIDTH + width + (columns.size() + 1).x, 0, width, HEIGHT - height - space ));  
+	  columns.add(new Rectangle(columns.get(columns.size() - 1).x + 600, HEIGHT - height - 120, width, height));
+	  columns.add(new Rectangle(columns.get(columns.size() - 1).x, 0, width, HEIGHT - height - space ));  
   }
   
-  
- 
-}
+ }
 
 
 //creating the columns
@@ -81,7 +87,14 @@ public void paintColumn(Graphics g, Rectangle column)
 @Override
 public void actionPerformed(ActionEvent e) 
  {
-  render.repaint(); 	
+	//creating the bird's motion
+   if(ticks % 2 == 0 && yMotion < 15)
+   {
+	 yMotion += 2;
+   }
+	bird.y = yMotion;
+	
+   render.repaint(); 
   }
 
  public void repaint(Graphics g)
@@ -103,6 +116,7 @@ public void actionPerformed(ActionEvent e)
 	g.fillRect(bird.x, bird.y, bird.width, bird.height);
   }
   
+   //instantiating bird objects
   public static void main(String[] args)
   {
 	flappyBird = new FlappyBird();
