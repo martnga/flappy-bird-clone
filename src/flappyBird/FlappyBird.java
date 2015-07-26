@@ -1,7 +1,8 @@
 package flappyBird;
 
-public class FlappyBird {
+public class flappyBird {
 
+	public static flappy
 	public FlappyBird(){
 		
 	}
