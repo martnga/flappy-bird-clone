@@ -25,7 +25,7 @@ public Render render;
 
 public Rectangle bird;
 
-public int ticks, yMotion;
+public int ticks, yMotion, score;
 
 public ArrayList<Rectangle> columns;
 
@@ -66,7 +66,7 @@ public boolean gameOver, started;
   //adding the columns of random height to screen
 public void addColumn(boolean start)
 {
- int space = 200;
+ int space = 300;
  int width = 100;
  int height = 50 + rand.nextInt(300);
  
@@ -99,7 +99,7 @@ public void actionPerformed(ActionEvent e)
  {
 		
 	//moving the columns towards the left;
-	int speed = 10;
+	int speed = 8;
 	   
    for(int i = 0; i< columns.size(); i++)
    {
@@ -188,7 +188,7 @@ public void actionPerformed(ActionEvent e)
 	g.setFont(new Font("Arial", 1, 100));
 	
 	//to start the game
-	if (!gameOver)
+	if (!started)
 	{
 	  g.drawString("Click to Start!", 75, HEIGHT/2 -50);
 	}
@@ -213,6 +213,8 @@ public void actionPerformed(ActionEvent e)
 		  bird = new Rectangle(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20, 20);
 			
 			columns.clear();
+			yMotion = 0;
+			score = 0;
 			
 			addColumn(true);
 			addColumn(true);
@@ -225,6 +227,15 @@ public void actionPerformed(ActionEvent e)
 	  if(!started)
 	  {
 		  started = true;
+	  }
+	  else if (!gameOver)
+	  {
+		  if (yMotion > 0)
+		  {
+			  yMotion = 0;
+		  }
+		  
+		  yMotion -= 10;
 	  }
   }
 
