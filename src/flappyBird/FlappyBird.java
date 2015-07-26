@@ -147,8 +147,11 @@ public void actionPerformed(ActionEvent e)
 		{
 			gameOver = true;
 			
+			if(bird.x <= column.x)
+			{
 			//column sweeps the bird away
 			bird.x = column.x - bird.width;
+			}
 		}
 	}
 	
