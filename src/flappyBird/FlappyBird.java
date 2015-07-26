@@ -1,6 +1,7 @@
 package flappyBird;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +14,10 @@ public class FlappyBird implements ActionListener
 public static FlappyBird flappyBird;
 
 public final int WIDTH = 600, HEIGHT = 600;
+
 public Render render;
+
+public Rectangle bird;
 
 // class constructor
   public FlappyBird()
@@ -28,19 +32,22 @@ public Render render;
 	jframe.setSize(WIDTH, HEIGHT);
 	jframe.setResizable(false);
 	jframe.setVisible(true);
-   }
 	
+	bird = new Rectangle(WIDTH / 2 - 10, HEIGHT / 2 - 10, 20, 20);
+	
+	timer.start();
+   } 
+	
+    
 @Override
 public void actionPerformed(ActionEvent e) 
  {
-  
-  	
+  render.repaint(); 	
   }
 
   public void repaint(Graphics g)
   {
-		
-		
+			
   }
   
   public static void main(String[] args)
