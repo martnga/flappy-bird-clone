@@ -1,5 +1,7 @@
 package flappyBird;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 public class FlappyBird {
@@ -20,6 +22,11 @@ public class FlappyBird {
 		
 	public static void main(String[] args){
 		flappyBird = new FlappyBird();
+	}
+
+	public void repaint(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
