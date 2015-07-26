@@ -106,6 +106,12 @@ public void actionPerformed(ActionEvent e)
 	  if (column.x + column.width < 0)
 	  {
 		  columns.remove(column);
+		  
+		  //remove the top column and add another
+		  if(column.y == 0)
+		  {
+			  addColumn(false);
+		  }
 	  }
     }
    
