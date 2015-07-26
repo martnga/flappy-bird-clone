@@ -48,8 +48,13 @@ public void actionPerformed(ActionEvent e)
 
   public void repaint(Graphics g)
   {
+	  //background paint components
 	g.setColor(Color.cyan);
 	g.fillRect(0, 0, WIDTH, HEIGHT);
+	
+	  //bird paint components
+	g.setColor(Color.red);
+	g.fillRect(bird.x, bird.y, bird.width, bird.height);
   }
   
   public static void main(String[] args)
