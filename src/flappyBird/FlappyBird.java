@@ -123,6 +123,20 @@ public void actionPerformed(ActionEvent e)
    }
 	bird.y += yMotion;
 	
+	//Conditions for ending the game
+	for (Rectangle column : columns)
+	{
+		if (column.intersects(bird))
+		{
+			gameOver = true;
+		}
+	}
+	
+	if(bird.y > HEIGHT - 150 || bird.y < 0)
+	{
+		gameOver = true;
+	}
+	
     render.repaint(); 
   }
 
