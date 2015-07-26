@@ -1,6 +1,7 @@
 package flappyBird;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -28,6 +28,8 @@ public int ticks, yMotion;
 public ArrayList<Rectangle> columns;
 
 public Random rand;
+
+public boolean gameOver, started = true;
 
 // class constructor
   public FlappyBird()
@@ -85,10 +87,14 @@ public void paintColumn(Graphics g, Rectangle column)
 	g.setColor(Color.green.darker());
 	g.fillRect(column.x, column.y, column.width, column.height);
 }  
-  
+
+  //Setting the game's logic
 @Override
 public void actionPerformed(ActionEvent e) 
  {
+ if (started)
+ {
+		
 	//moving the columns towards the left;
 	int speed = 10;
 	   
@@ -137,9 +143,12 @@ public void actionPerformed(ActionEvent e)
 		gameOver = true;
 	}
 	
+  }
+	
     render.repaint(); 
   }
 
+ // All the game Graphics
  public void repaint(Graphics g)
   {
 	  //background paint components
@@ -161,6 +170,15 @@ public void actionPerformed(ActionEvent e)
 	for(Rectangle column : columns)
 	{
 		paintColumn(g, column);
+	}
+	
+	//when its game over
+	g.setColor(Color.white);
+	g.setFont(new Font("Arial", 1, 100));
+	
+	if (gameOver)
+	{
+	  g.drawString("Game Over!", 75, HEIGHT/2 -50);
 	}
   }
   
