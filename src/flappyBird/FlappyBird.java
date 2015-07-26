@@ -143,6 +143,12 @@ public void actionPerformed(ActionEvent e)
 		gameOver = true;
 	}
 	
+	//positioning the bird after it falls over
+	if (gameOver)
+	{
+		bird.y = HEIGHT - 120 -bird.height;
+	}
+	
   }
 	
     render.repaint(); 
